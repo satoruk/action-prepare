@@ -1,0 +1,14 @@
+.envrc
+.node-version
+coverage
+node_modules
+
+*.d.ts
+*.js
+*.log
+*.map
+*.tgz
+*.tsbuildinfo
+
+!*.config.js
+!*.config.json

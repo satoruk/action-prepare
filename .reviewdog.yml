@@ -1,0 +1,7 @@
+runner:
+  cspell:
+    cmd: npx cspell --no-color "**/*.*"
+    errorformat:
+      - "%f:%l:%c - %m"
+    name: cspell
+    level: warning

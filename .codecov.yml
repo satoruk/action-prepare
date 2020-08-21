@@ -1,0 +1,5 @@
+overage:
+  status:
+    project:
+      default:
+        threshold: 0.10%

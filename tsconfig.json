@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping */
+
+    /* Basic Options */
+    "declaration": true,
+    "declarationMap": true,
+    "lib": ["ES2018"],
+    "module": "commonjs",
+    "outDir": ".",
+    "rootDir": ".",
+    "sourceMap": true,
+    "target": "ES2018",
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+
+    /* Module Resolution Options */
+    "esModuleInterop": true,
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "types": ["node", "jest"]
+  },
+  "exclude": ["node_modules", "coverage"],
+  "include": ["**/*.ts", "package.json"]
+}

@@ -1,0 +1,19 @@
+{
+  "extends": ["config:base", "packages:eslint", "group:definitelyTyped"],
+  "packageRules": [
+    {
+      "extends": "packages:jsUnitTest",
+      "groupName": "Test packages",
+      "packageNames": ["@types/jest", "ts-jest"]
+    },
+    {
+      "groupName": "semantic-release packages",
+      "packageNames": [
+        "commitizen",
+        "cz-conventional-changelog",
+        "semantic-release"
+      ],
+      "packagePatterns": ["^@semantic-release/"]
+    }
+  ]
+}

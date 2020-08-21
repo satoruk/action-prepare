@@ -1,0 +1,77 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    name: Node v${{ matrix.node-version }}
+    strategy:
+      fail-fast: true
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v2.3.1
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2.1.0
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install
+        run: yarn install --ignore-scripts
+      - name: run tests
+        run: yarn test --color --ci
+      - uses: codecov/codecov-action@v1.0.10
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/coverage-final.json
+          fail_ci_if_error: true
+        if: ${{ matrix.node-version == '10.x' }}
+  release:
+    needs: test
+    name: release on Node v${{ matrix.node-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [12.x]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # If you want to release automatically, remove ` && false`
+    if: github.ref == 'refs/heads/master' && false
+
+    steps:
+      - uses: actions/checkout@v2.3.1
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2.1.0
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install
+        run: yarn install
+      - name: release
+        run: yarn release --ci
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
