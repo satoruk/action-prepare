@@ -9,8 +9,9 @@ extends:
   - prettier/@typescript-eslint
 ignorePatterns:
   - "coverage"
+  - "dist"
+  - "lib"
   - "node_modules"
-  - "**/*.d.ts"
 overrides:
   - env:
       es2020: true

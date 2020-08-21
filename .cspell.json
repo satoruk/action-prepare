@@ -1,5 +1,11 @@
 {
   "version": "0.1",
-  "ignorePaths": ["coverage/**", "node_modules/**", "yarn.lock"],
-  "words": ["codecov", "gopath", "mkdir"]
+  "ignorePaths": [
+    "coverage/**",
+    "dist/**",
+    "lib/**",
+    "node_modules/**",
+    "yarn.lock"
+  ],
+  "words": ["codecov", "gopath", "macos", "mkdir", "vercel"]
 }
