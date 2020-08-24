@@ -3,6 +3,7 @@
 coverage
 node_modules
 
+*.code-workspace
 *.log
 *.tgz
 *.tsbuildinfo
