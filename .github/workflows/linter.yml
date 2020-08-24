@@ -4,7 +4,11 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - "examples/**"
   pull_request:
+    paths-ignore:
+      - "examples/**"
 
 jobs:
   cspell:
@@ -57,6 +61,6 @@ jobs:
         uses: docker://github/super-linter:v3
         env:
           DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JAVASCRIPT_STANDARD: false

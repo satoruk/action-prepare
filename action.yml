@@ -1,0 +1,12 @@
+name: "Prepare"
+description: "Prepare any environment variables or files"
+inputs:
+  config-file:
+    description: "preparation file"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
+branding:
+  icon: "save"
+  color: "gray-dark"

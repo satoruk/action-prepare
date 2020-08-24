@@ -4,14 +4,21 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - "examples/**"
   pull_request:
+    paths-ignore:
+      - "examples/**"
 
 jobs:
   test:
-    name: Node v${{ matrix.node-version }}
+    name: Node v${{ matrix.node-version }} on ${{ matrix.os }}
     strategy:
-      fail-fast: true
       matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
         node-version: [10.x, 12.x, 14.x]
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -24,9 +31,9 @@ jobs:
       - uses: actions/cache@v2.1.0
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ matrix.os }}-node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-${{ matrix.node-version }}-yarn-
+            ${{ matrix.os }}-node-${{ matrix.node-version }}-yarn-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -40,7 +47,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/coverage-final.json
           fail_ci_if_error: true
-        if: ${{ matrix.node-version == '10.x' }}
+        if: ${{ matrix.node-version == '10.x' && matrix.os == 'ubuntu-latest' }}
   release:
     needs: test
     name: release on Node v${{ matrix.node-version }}
