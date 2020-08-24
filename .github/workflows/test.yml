@@ -52,13 +52,11 @@ jobs:
     needs: test
     name: release on Node v${{ matrix.node-version }}
     strategy:
-      fail-fast: false
       matrix:
         node-version: [12.x]
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # If you want to release automatically, remove ` && false`
-    if: github.ref == 'refs/heads/master' && false
+    if: github.ref == 'refs/heads/master'
 
     steps:
       - uses: actions/checkout@v2.3.1
@@ -80,5 +78,4 @@ jobs:
       - name: release
         run: yarn release --ci
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
