@@ -5,7 +5,7 @@
   "license": "MIT",
   "homepage": "https://github.com/satoruk/action-prepare",
   "scripts": {
-    "build": "ncc build --minify --source-map src/index.ts",
+    "build": "tsc --noEmit && ncc build --minify --source-map src/index.ts",
     "clean": "yarn clean:report && yarn clean:build",
     "clean:build": "del dist",
     "clean:report": "del coverage '*.log'",
