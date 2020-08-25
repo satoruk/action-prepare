@@ -18,12 +18,12 @@ function getOptionalInput(name: string): string | void {
 }
 
 export async function loadInputs(): Promise<Inputs> {
-  const configFile = getRequiredInput("config-file");
+  const configFile = getRequiredInput("config_file");
   let result: Inputs = {
     configFile,
   };
 
-  const gpgPassphrase = getOptionalInput("gpg-passphrase");
+  const gpgPassphrase = getOptionalInput("gpg_passphrase");
   if (gpgPassphrase) {
     result = { ...result, gpgPassphrase };
   }

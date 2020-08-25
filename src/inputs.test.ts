@@ -12,17 +12,17 @@ describe("loadInputs", () => {
   test.each([
     [
       "satisfied all params",
-      { "config-file": "dummy.yml" },
+      { config_file: "dummy.yml" },
       { configFile: "dummy.yml" },
     ],
     [
-      "satisfied all params with blank gpg-passphrase",
-      { "config-file": "dummy.yml", "gpg-passphrase": "" },
+      "satisfied all params with blank gpg_passphrase",
+      { config_file: "dummy.yml", gpg_passphrase: "" },
       { configFile: "dummy.yml" },
     ],
     [
-      "satisfied all params with gpg-passphrase",
-      { "config-file": "dummy.yml", "gpg-passphrase": "pass" },
+      "satisfied all params with gpg_passphrase",
+      { config_file: "dummy.yml", gpg_passphrase: "pass" },
       { configFile: "dummy.yml", gpgPassphrase: "pass" },
     ],
   ])("loadInputs() with %s", async (_, params, expected) => {
@@ -35,7 +35,7 @@ describe("loadInputs", () => {
     [
       "unsatisfied config file path",
       {}, //
-      new Error("Input required and not supplied: config-file"),
+      new Error("Input required and not supplied: config_file"),
     ],
   ])("loadInputs() with %s", async (_, params, expected) => {
     actionWith(params);

@@ -20,7 +20,7 @@ steps:
   - uses: actions/checkout@v2
   - uses: satoruk/action-prepare
     with:
-      config-file: examples/demo.yml
+      config_file: examples/demo.yml
 ```
 
 #### `examples/demo.yml`
@@ -61,6 +61,6 @@ steps:
   - uses: actions/checkout@v2
   - uses: satoruk/action-prepare
     with:
-      config-file: examples/demo.yml.gpg
-      gpg-passphrase: secret stuff
+      config_file: examples/demo.yml.gpg
+      gpg_passphrase: secret stuff
 ```
