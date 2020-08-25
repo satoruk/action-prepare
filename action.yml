@@ -4,6 +4,9 @@ inputs:
   config-file:
     description: "preparation file"
     required: true
+  gpg-passphrase:
+    description: "use this input if description file is encrypted by GPG passphrase"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"
