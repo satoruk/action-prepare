@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/satoruk/action-prepare/compare/v1.1.0...v1.2.0) (2020-08-26)
+
+
+### Features
+
+* change to secret on any `env` values by default ([bc53a59](https://github.com/satoruk/action-prepare/commit/bc53a59bf0cca6d322d84f92d14b47c053c1f00f))
+* support to mask values ([f8f03ab](https://github.com/satoruk/action-prepare/commit/f8f03ab09598d660a1ba165ec4cd23af1b717fa0))
+
 # [1.1.0](https://github.com/satoruk/action-prepare/compare/v1.0.0...v1.1.0) (2020-08-26)
 
 
