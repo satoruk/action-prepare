@@ -1,4 +1,4 @@
-import { prepareEnv, prepareFile } from "./prepare";
+import { prepareEnv, prepareFile, prepareMask } from "./prepare";
 
 import noop from "lodash/noop";
 import * as core from "@actions/core";
@@ -9,21 +9,52 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-describe("prepareEnv", () => {
-  test("without any env values", async () => {
-    const spy = jest.spyOn(core, "exportVariable");
-    spy.mockImplementation(() => {});
+describe("prepareMask", () => {
+  let spyExportVariable: jest.SpyInstance<void, [string, string]>;
+  let spySetSecret: jest.SpyInstance<void, [string]>;
+  beforeEach(() => {
+    spyExportVariable = jest.spyOn(core, "exportVariable").mockReturnValue();
+    spySetSecret = jest.spyOn(core, "setSecret").mockReturnValue();
+  });
 
+  test("without any values", async () => {
+    const config = {};
+    await prepareMask(config);
+
+    expect(spyExportVariable).toHaveBeenCalledTimes(0);
+    expect(spySetSecret).toHaveBeenCalledTimes(0);
+  });
+
+  test("with a string value", async () => {
+    const config = {
+      mask: ["dummyValue"],
+    };
+    await prepareMask(config);
+
+    expect(spyExportVariable).toHaveBeenCalledTimes(0);
+
+    expect(spySetSecret).toHaveBeenCalledWith("dummyValue");
+    expect(spySetSecret).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("prepareEnv", () => {
+  let spyExportVariable: jest.SpyInstance<void, [string, string]>;
+  let spySetSecret: jest.SpyInstance<void, [string]>;
+  beforeEach(() => {
+    spyExportVariable = jest.spyOn(core, "exportVariable").mockReturnValue();
+    spySetSecret = jest.spyOn(core, "setSecret").mockReturnValue();
+  });
+
+  test("without any values", async () => {
     const config = {};
     await prepareEnv(config);
 
-    expect(spy).toHaveBeenCalledTimes(0);
+    expect(spyExportVariable).toHaveBeenCalledTimes(0);
+    expect(spySetSecret).toHaveBeenCalledTimes(0);
   });
 
-  test("with an env value", async () => {
-    const spy = jest.spyOn(core, "exportVariable");
-    spy.mockImplementation(() => {});
-
+  test("with a string value", async () => {
     const config = {
       env: {
         dummyKey: "dummyValue",
@@ -31,8 +62,33 @@ describe("prepareEnv", () => {
     };
     await prepareEnv(config);
 
-    expect(spy).toHaveBeenCalledWith("dummyKey", "dummyValue");
-    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spyExportVariable).toHaveBeenCalledWith("dummyKey", "dummyValue");
+    expect(spyExportVariable).toHaveBeenCalledTimes(1);
+
+    expect(spySetSecret).toHaveBeenCalledTimes(0);
+  });
+
+  test("with object values", async () => {
+    const config = {
+      env: {
+        dummyKey1: {
+          value: "dummyValue1",
+          secret: false,
+        },
+        dummyKey2: {
+          value: "dummyValue2",
+          secret: true,
+        },
+      },
+    };
+    await prepareEnv(config);
+
+    expect(spyExportVariable).toHaveBeenCalledWith("dummyKey1", "dummyValue1");
+    expect(spyExportVariable).toHaveBeenCalledWith("dummyKey2", "dummyValue2");
+    expect(spyExportVariable).toHaveBeenCalledTimes(2);
+
+    expect(spySetSecret).toHaveBeenCalledWith("dummyValue2");
+    expect(spySetSecret).toHaveBeenCalledTimes(1);
   });
 });
 

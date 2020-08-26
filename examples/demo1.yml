@@ -1,5 +1,8 @@
 env:
   DUMMY1_TOKEN: DUMMY1_TOKEN_VALUE
+  DUMMY1_SECRET_TOKEN:
+    value: DUMMY1_SECRET_TOKEN_VALUE
+    secret: true
 file:
   examples/dummy1.json: |
     {
@@ -9,3 +12,5 @@ file:
     {
       "dummy": "dummy1_2"
     }
+mask:
+  - MASK_VALUE1

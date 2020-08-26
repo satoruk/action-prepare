@@ -28,14 +28,18 @@ jobs:
           config_file: examples/demo2.yml.gpg
           gpg_passphrase: secret stuff
       - if: ${{ matrix.os == 'windows-latest' }}
-        name: sample
+        name: output on windows
         run: |
+          echo 'MASK_VALUE1'
           echo $env:DUMMY1_TOKEN
+          echo $env:DUMMY1_SECRET_TOKEN
           echo $env:DUMMY2_TOKEN
           ls examples
       - if: ${{ matrix.os != 'windows-latest' }}
-        name: sample
+        name: output on ubuntu or macOS
         run: |
+          echo 'MASK_VALUE1'
           echo $DUMMY1_TOKEN
+          echo $DUMMY1_SECRET_TOKEN
           echo $DUMMY2_TOKEN
           ls -al examples

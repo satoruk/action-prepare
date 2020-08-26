@@ -1,14 +1,32 @@
-import { info, error, exportVariable } from "@actions/core";
+import { error, exportVariable, info, setSecret } from "@actions/core";
+import isString from "lodash/isString";
 
 import { Config } from "./config";
 import { writeFile } from "./fsUtils";
+
+export async function prepareMask(config: Config): Promise<void> {
+  if (!config.mask) {
+    return;
+  }
+  for (const v of config.mask) {
+    setSecret(v);
+  }
+}
 
 export async function prepareEnv(config: Config): Promise<void> {
   if (!config.env) {
     return;
   }
   for (const k in config.env) {
-    exportVariable(k, config.env[k]);
+    const env = config.env[k];
+    if (isString(env)) {
+      exportVariable(k, env);
+    } else {
+      if (env.secret == true) {
+        setSecret(env.value);
+      }
+      exportVariable(k, env.value);
+    }
   }
 }
 

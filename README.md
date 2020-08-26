@@ -27,12 +27,17 @@ steps:
 
 ```yaml
 env:
-  FOO_TOKEN: DUMMY_TOKEN
+  DUMMY1_TOKEN: DUMMY1_TOKEN_VALUE
+  DUMMY1_SECRET_TOKEN:
+    value: DUMMY1_SECRET_TOKEN_VALUE
+    secret: true
 file:
   examples/dummy1.json: |
     {
       "dummy": "dummy122"
     }
+mask:
+  - MASK_VALUE1
 ```
 
 ### To use YAML config file with GPG encrypt
