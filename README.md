@@ -27,15 +27,22 @@ steps:
 
 ```yaml
 env:
-  FOO_TOKEN: DUMMY_TOKEN
+  # To be a masked environment variable
+  DUMMY1_TOKEN: DUMMY1_TOKEN_VALUE
+  # To be a environment variable(no mask)
+  DUMMY1_NO_SECRET_TOKEN:
+    value: DUMMY1_NO_SECRET_TOKEN_VALUE
+    secret: false
 file:
   examples/dummy1.json: |
     {
       "dummy": "dummy122"
     }
+mask:
+  - MASK_VALUE1
 ```
 
-### To use YAML config file with GPG encrypt
+### With GPG encrypt
 
 If you want to use encrypted config file, encrypt to your config file on your git repository.
 

@@ -47,7 +47,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/coverage-final.json
           fail_ci_if_error: true
-        if: ${{ matrix.node-version == '10.x' && matrix.os == 'ubuntu-latest' }}
+        if: ${{ matrix.node-version == '12.x' && matrix.os == 'ubuntu-latest' }}
   release:
     needs: test
     name: release on Node v${{ matrix.node-version }}

@@ -5,8 +5,14 @@ import { promises } from "fs";
 import { Inputs } from "./inputs";
 
 export type Config = {
+  mask?: string[];
   env?: {
-    [k: string]: string;
+    [k: string]:
+      | string
+      | {
+          value: string;
+          secret: boolean;
+        };
   };
   file?: {
     [k: string]: string;
