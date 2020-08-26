@@ -20,6 +20,7 @@ export async function prepareEnv(config: Config): Promise<void> {
   for (const k in config.env) {
     const env = config.env[k];
     if (isString(env)) {
+      setSecret(env);
       exportVariable(k, env);
     } else {
       if (env.secret == true) {

@@ -65,7 +65,8 @@ describe("prepareEnv", () => {
     expect(spyExportVariable).toHaveBeenCalledWith("dummyKey", "dummyValue");
     expect(spyExportVariable).toHaveBeenCalledTimes(1);
 
-    expect(spySetSecret).toHaveBeenCalledTimes(0);
+    expect(spySetSecret).toHaveBeenCalledWith("dummyValue");
+    expect(spySetSecret).toHaveBeenCalledTimes(1);
   });
 
   test("with object values", async () => {

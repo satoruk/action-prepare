@@ -32,7 +32,7 @@ jobs:
         run: |
           echo 'MASK_VALUE1'
           echo $env:DUMMY1_TOKEN
-          echo $env:DUMMY1_SECRET_TOKEN
+          echo $env:DUMMY1_NO_SECRET_TOKEN
           echo $env:DUMMY2_TOKEN
           ls examples
       - if: ${{ matrix.os != 'windows-latest' }}
@@ -40,6 +40,6 @@ jobs:
         run: |
           echo 'MASK_VALUE1'
           echo $DUMMY1_TOKEN
-          echo $DUMMY1_SECRET_TOKEN
+          echo $DUMMY1_NO_SECRET_TOKEN
           echo $DUMMY2_TOKEN
           ls -al examples
