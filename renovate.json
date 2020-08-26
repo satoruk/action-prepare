@@ -15,5 +15,6 @@
       ],
       "packagePatterns": ["^@semantic-release/"]
     }
-  ]
+  ],
+  "schedule": ["every weekend"]
 }
