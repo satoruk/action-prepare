@@ -39,7 +39,7 @@ describe("run", () => {
     expect(spyLoadInputs).toBeCalledTimes(1);
 
     expect(spyLoadConfig).toBeCalledTimes(1);
-    expect(spyLoadConfig).toHaveBeenCalledWith(valueInputs.configFile);
+    expect(spyLoadConfig).toHaveBeenCalledWith(baseDir, valueInputs);
 
     expect(spyPrepareEnv).toBeCalledTimes(1);
     expect(spyPrepareEnv).toHaveBeenCalledWith(valueConfig);

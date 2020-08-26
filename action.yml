@@ -1,9 +1,12 @@
 name: "Prepare"
 description: "Prepare any environment variables or files"
 inputs:
-  config-file:
+  config_file:
     description: "preparation file"
     required: true
+  gpg_passphrase:
+    description: "use this input if description file is encrypted by GPG passphrase"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"

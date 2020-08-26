@@ -7,9 +7,11 @@
 
 ## Usage
 
-to prepare any environment variables and any files.
+To prepare any environment variables and any files.
 
-### `.github/workflows/sample.yml`
+### To use YAML config file
+
+#### `.github/workflows/sample.yml`
 
 ```yaml
 name: Sample
@@ -18,10 +20,10 @@ steps:
   - uses: actions/checkout@v2
   - uses: satoruk/action-prepare
     with:
-      config-file: examples/demo.yml
+      config_file: examples/demo.yml
 ```
 
-### `examples/demo.yml`
+#### `examples/demo.yml`
 
 ```yaml
 env:
@@ -31,4 +33,34 @@ file:
     {
       "dummy": "dummy122"
     }
+```
+
+### To use YAML config file with GPG encrypt
+
+If you want to use encrypted config file, encrypt to your config file on your git repository.
+
+To encrypt sample command below.
+
+```shell
+gpg \
+  --batch \
+  --cipher-algo AES256 \
+  --compress-algo zlib \
+  --passphrase 'secret stuff' \
+  --symmetric \
+  --yes \
+  "/path/to/config.yml"
+```
+
+#### `.github/workflows/sample.yml`
+
+```yaml
+name: Sample
+on: push
+steps:
+  - uses: actions/checkout@v2
+  - uses: satoruk/action-prepare
+    with:
+      config_file: examples/demo.yml.gpg
+      gpg_passphrase: secret stuff
 ```

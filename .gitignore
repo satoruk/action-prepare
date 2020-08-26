@@ -1,7 +1,14 @@
 .envrc
 .node-version
 coverage
-node_modules
+node_modules/*
+
+# Fix https://github.com/vercel/ncc/issues/538
+!node_modules/asn1.js/
+!node_modules/bn.js/
+!node_modules/inherits/
+!node_modules/safer-buffer/
+!node_modules/minimalistic-assert/
 
 *.code-workspace
 *.log

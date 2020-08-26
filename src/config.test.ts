@@ -1,10 +1,4 @@
-import { promises } from "fs";
-
-import { loadConfig, assertConfig } from "./config";
-
-beforeEach(() => {
-  jest.resetModules();
-});
+import { assertConfig, loadConfig } from "./config";
 
 describe("assertConfig", () => {
   test.each([
@@ -18,31 +12,32 @@ describe("assertConfig", () => {
 });
 
 describe("loadConfig", () => {
+  const baseDir = "src/fixtures";
+  const dummy1Content = {
+    env: {
+      TOKEN: "DUMMY_TOKEN",
+    },
+    file: {
+      "examples/dummy1.json": '{"dummy":"dummy1"}\n',
+    },
+  };
+
   test.each([
     [
-      "normal1",
-      [
-        "env:",
-        "  TOKEN: DUMMY_TOKEN",
-        "file:",
-        "  examples/dummy1.json: |",
-        "    {",
-        '      "dummy": "dummy1"',
-        "    }",
-        "",
-      ].join("\n"),
       {
-        env: {
-          TOKEN: "DUMMY_TOKEN",
-        },
-        file: {
-          "examples/dummy1.json": '{\n  "dummy": "dummy1"\n}\n',
-        },
+        configFile: "dummy1.yml",
       },
+      dummy1Content,
     ],
-  ])("loadConfig(file %s)", async (_, content, expected) => {
-    jest.spyOn(promises, "readFile").mockReturnValue(Promise.resolve(content));
-    const config = await loadConfig("dummy_config.yml");
+    [
+      {
+        configFile: "dummy1.yml.gpg",
+        gpgPassphrase: "secret stuff",
+      },
+      dummy1Content,
+    ],
+  ])("loadConfig(baseDir, %j)", async (inputs, expected) => {
+    const config = await loadConfig(baseDir, inputs);
     expect(config).toStrictEqual(expected);
   });
 });

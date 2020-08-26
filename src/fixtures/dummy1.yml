@@ -1,0 +1,5 @@
+env:
+  TOKEN: DUMMY_TOKEN
+file:
+  examples/dummy1.json: |
+    {"dummy":"dummy1"}

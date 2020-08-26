@@ -1,13 +1,32 @@
 import { getInput } from "@actions/core";
 
-type Inputs = {
+export type Inputs = {
   configFile: string;
+  gpgPassphrase?: string;
 };
 
+function getRequiredInput(name: string): string {
+  return getInput(name, { required: true });
+}
+
+function getOptionalInput(name: string): string | void {
+  const value = getInput(name);
+  if (value == "") {
+    return;
+  }
+  return value;
+}
+
 export async function loadInputs(): Promise<Inputs> {
-  const configFile = getInput("config-file", { required: true });
-  const result: Inputs = {
+  const configFile = getRequiredInput("config_file");
+  let result: Inputs = {
     configFile,
   };
+
+  const gpgPassphrase = getOptionalInput("gpg_passphrase");
+  if (gpgPassphrase) {
+    result = { ...result, gpgPassphrase };
+  }
+
   return result;
 }

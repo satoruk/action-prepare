@@ -1,0 +1,11 @@
+env:
+  DUMMY2_TOKEN: DUMMY2_TOKEN_VALUE
+file:
+  examples/dummy2.json: |
+    {
+      "dummy": "dummy2_1"
+    }
+  examples/dummy2/dummy2.json: |
+    {
+      "dummy": "dummy2_2"
+    }
