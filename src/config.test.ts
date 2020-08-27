@@ -2,12 +2,60 @@ import { assertConfig, loadConfig } from "./config";
 
 describe("assertConfig", () => {
   test.each([
-    ["string", "dummy"],
-    ["null", null],
-  ])("assertConfig(%s) to throw error", async (_, arg) => {
+    ["pattern1", {}, {}],
+    [
+      "pattern2",
+      { env: {}, file: {}, mask: [] },
+      { env: {}, file: {}, mask: [] },
+    ],
+    [
+      "pattern3",
+      {
+        env: {
+          K1: "V1",
+          K2: { value: "V2" },
+          K3: { value: "V3", secret: false },
+        },
+        file: { "path/to/file1": "file1 value" },
+        mask: ["mask1"],
+      },
+      {
+        env: {
+          K1: "V1",
+          K2: { value: "V2" },
+          K3: { value: "V3", secret: false },
+        },
+        file: { "path/to/file1": "file1 value" },
+        mask: ["mask1"],
+      },
+    ],
+  ])("assertConfig(%s) to be success", (_, data, expected) => {
     expect(() => {
-      assertConfig(arg);
-    }).toThrowError(new Error("Not Config"));
+      assertConfig(data);
+    }).not.toThrowError();
+    expect(data).toStrictEqual(expected);
+  });
+
+  test.each([
+    [
+      "pattern1",
+      { env: { K1: {} } },
+      "should have required property 'value' at .env['K1']",
+    ],
+    [
+      "pattern1",
+      { env: { K1: { secret: false } } },
+      "should have required property 'value' at .env['K1']",
+    ],
+    [
+      "pattern1",
+      { env: { "in.valid": "v1" } },
+      "should NOT have additional properties at .env",
+    ],
+  ])("assertConfig(%s) to throw error", async (_, data, expected) => {
+    expect(() => {
+      assertConfig(data);
+    }).toThrowError(new TypeError(expected));
   });
 });
 

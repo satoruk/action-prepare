@@ -1,8 +1,13 @@
 import * as openpgp from "openpgp";
+import Ajv from "ajv";
 import yaml from "js-yaml";
 import { join } from "path";
 import { promises } from "fs";
+import groupBy from "lodash/groupBy";
+import sortBy from "lodash/sortBy";
+
 import { Inputs } from "./inputs";
+import configSchema from "./config.schema.json";
 
 export type Config = {
   mask?: string[];
@@ -11,7 +16,7 @@ export type Config = {
       | string
       | {
           value: string;
-          secret: boolean;
+          secret?: boolean;
         };
   };
   file?: {
@@ -19,9 +24,27 @@ export type Config = {
   };
 };
 
+const ERROR_KEYWORD_ORDER = ["required", "type"].reverse();
+
 export function assertConfig(v: unknown): asserts v is Config {
-  if (typeof v != "object" || v == null) {
-    throw new TypeError("Not Config");
+  const ajv = new Ajv();
+  const validate = ajv.compile(configSchema);
+  validate(v);
+  if (validate.errors) {
+    // sort by dataPath and keyword
+    const errors = validate.errors;
+    const groupedDataPathErrors = groupBy(errors, "dataPath");
+    const dataPaths = sortBy(Object.keys(groupedDataPathErrors), "length");
+    for (const dataPath of dataPaths) {
+      const dataPathErrors = groupedDataPathErrors[dataPath];
+      const sortedErrors = sortBy(
+        dataPathErrors,
+        (v) => -ERROR_KEYWORD_ORDER.indexOf(v.keyword)
+      );
+      for (const e of sortedErrors) {
+        throw new TypeError(`${e.message} at ${e.dataPath}`);
+      }
+    }
   }
 }
 

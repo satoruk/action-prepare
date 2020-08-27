@@ -23,7 +23,7 @@ export async function prepareEnv(config: Config): Promise<void> {
       setSecret(env);
       exportVariable(k, env);
     } else {
-      if (env.secret == true) {
+      if (env.secret !== false) {
         setSecret(env.value);
       }
       exportVariable(k, env.value);
