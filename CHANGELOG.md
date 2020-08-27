@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/satoruk/action-prepare/compare/v1.2.0...v1.3.0) (2020-08-27)
+
+
+### Features
+
+* improve assertConfig function ([cea957c](https://github.com/satoruk/action-prepare/commit/cea957c38ff64e14eebd7ebb6c115573a9174cab))
+
 # [1.2.0](https://github.com/satoruk/action-prepare/compare/v1.1.0...v1.2.0) (2020-08-26)
 
 
