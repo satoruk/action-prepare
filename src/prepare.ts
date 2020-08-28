@@ -1,5 +1,6 @@
 import { error, exportVariable, info, setSecret } from "@actions/core";
 import isString from "lodash/isString";
+import { replaceEnvVer } from "./strUtils";
 
 import { Config } from "./config";
 import { writeFile } from "./fsUtils";
@@ -9,7 +10,7 @@ export async function prepareMask(config: Config): Promise<void> {
     return;
   }
   for (const v of config.mask) {
-    setSecret(v);
+    setSecret(replaceEnvVer(v));
   }
 }
 
@@ -20,13 +21,15 @@ export async function prepareEnv(config: Config): Promise<void> {
   for (const k in config.env) {
     const env = config.env[k];
     if (isString(env)) {
-      setSecret(env);
-      exportVariable(k, env);
+      const value = replaceEnvVer(env);
+      setSecret(value);
+      exportVariable(k, value);
     } else {
+      const value = replaceEnvVer(env.value);
       if (env.secret !== false) {
-        setSecret(env.value);
+        setSecret(value);
       }
-      exportVariable(k, env.value);
+      exportVariable(k, value);
     }
   }
 }
@@ -40,7 +43,8 @@ export async function prepareFile(
   }
   for (const filename in config.file) {
     const content = config.file[filename];
-    const result = await writeFile(baseDir, filename, content);
+    const actualFilename = replaceEnvVer(filename);
+    const result = await writeFile(baseDir, actualFilename, content);
     if (result) {
       info(`wrote "${filename}"`);
     } else {

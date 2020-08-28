@@ -33,13 +33,24 @@ env:
   DUMMY1_NO_SECRET_TOKEN:
     value: DUMMY1_NO_SECRET_TOKEN_VALUE
     secret: false
+  DUMMY1_HOME:
+    # To use any environment variables at value
+    value: ${HOME}
+    secret: false
 file:
-  examples/dummy1.json: |
+  examples/dest/dummy1.json: |
     {
-      "dummy": "dummy122"
+      "dummy": "dummy1_1"
+    }
+  # To use any environment variables
+  ${HOME}/dest/dummy1_${GITHUB_SHA}.json: |
+    {
+      "dummy": "dummy1_2"
     }
 mask:
   - MASK_VALUE1
+  # To use any environment variables
+  - ${GITHUB_REPOSITORY}
 ```
 
 ### With GPG encrypt
