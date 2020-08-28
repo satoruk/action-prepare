@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/satoruk/action-prepare/compare/v1.3.0...v1.4.0) (2020-08-28)
+
+
+### Features
+
+* improve output logs ([c147420](https://github.com/satoruk/action-prepare/commit/c147420f2f924516e0e537e1faa4c432ce176548))
+* support absolute path ([474a900](https://github.com/satoruk/action-prepare/commit/474a9005a0613e9ffdda8c1a2fc7071dc27225b4))
+* support to use any environment variables in a string ([6e9d847](https://github.com/satoruk/action-prepare/commit/6e9d847e6d8ddf08d7d212eaf02c53d02e21bbb9))
+
 # [1.3.0](https://github.com/satoruk/action-prepare/compare/v1.2.0...v1.3.0) (2020-08-27)
 
 
