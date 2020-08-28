@@ -12,6 +12,7 @@ export async function prepareMask(config: Config): Promise<void> {
   for (const v of config.mask) {
     setSecret(replaceEnvVer(v));
   }
+  info(`mask value count: ${config.mask.length}`);
 }
 
 export async function prepareEnv(config: Config): Promise<void> {
@@ -24,12 +25,16 @@ export async function prepareEnv(config: Config): Promise<void> {
       const value = replaceEnvVer(env);
       setSecret(value);
       exportVariable(k, value);
+      info(`${k}: *** (mask)`);
     } else {
       const value = replaceEnvVer(env.value);
-      if (env.secret !== false) {
-        setSecret(value);
-      }
       exportVariable(k, value);
+      if (env.secret === false) {
+        info(`${k}: ${value}`);
+      } else {
+        setSecret(value);
+        info(`${k}: *** (mask)`);
+      }
     }
   }
 }

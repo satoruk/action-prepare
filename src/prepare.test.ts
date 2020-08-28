@@ -1,13 +1,17 @@
 import { prepareEnv, prepareFile, prepareMask } from "./prepare";
 
-import noop from "lodash/noop";
 import * as core from "@actions/core";
 
 import * as fsUtils from "./fsUtils";
 import { setup, reset } from "./testUtils";
 
+let spyInfo: jest.SpyInstance<void, [string]>;
+let spyError: jest.SpyInstance<void, [string | Error]>;
 beforeEach(() => {
   jest.clearAllMocks();
+  spyInfo = jest.spyOn(core, "info").mockReturnValue();
+  spyError = jest.spyOn(core, "error").mockReturnValue();
+
   setup();
   process.env.K1 = "V1";
 });
@@ -125,16 +129,6 @@ describe("prepareFile", () => {
 
   describe("with an file value", () => {
     const baseDir = "dummy";
-    let spyInfo: jest.SpyInstance<void, [string]>;
-    let spyError: jest.SpyInstance<void, [string | Error]>;
-
-    beforeEach(() => {
-      spyInfo = jest.spyOn(core, "info");
-      spyInfo.mockImplementation(noop);
-
-      spyError = jest.spyOn(core, "error");
-      spyError.mockImplementation(noop);
-    });
 
     test.each([
       [
