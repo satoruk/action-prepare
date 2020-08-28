@@ -14,7 +14,7 @@ file:
     {
       "dummy": "dummy1_1"
     }
-  # To use any environment variables
+  # To use any environment variables and absolute path
   ${HOME}/dest/dummy1_${GITHUB_SHA}.json: |
     {
       "dummy": "dummy1_2"

@@ -1,5 +1,9 @@
 import { promises } from "fs";
-import { dirname, join } from "path";
+import { dirname, resolve } from "path";
+
+export function pathResolve(baseDir: string, path: string) {
+  return resolve(baseDir, path);
+}
 
 export async function makeDir(baseDir: string, path: string): Promise<boolean> {
   const { mkdir, stat } = promises;
@@ -8,7 +12,7 @@ export async function makeDir(baseDir: string, path: string): Promise<boolean> {
     return true;
   }
 
-  const targetPath = join(baseDir, path);
+  const targetPath = pathResolve(baseDir, path);
   try {
     const result = await stat(targetPath);
     if (!result.isDirectory()) {
@@ -29,7 +33,7 @@ export async function writeFile(
   content: string
 ): Promise<boolean> {
   const { writeFile } = promises;
-  const absolutePath = join(baseDir, path);
+  const absolutePath = pathResolve(baseDir, path);
   const relativeDir = dirname(path);
   await makeDir(baseDir, relativeDir);
   await writeFile(absolutePath, content);

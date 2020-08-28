@@ -2,7 +2,7 @@ import { promises } from "fs";
 import { join } from "path";
 
 import { mkTempDir, rmDir } from "./testUtils";
-import { makeDir, writeFile } from "./fsUtils";
+import { makeDir, writeFile, pathResolve } from "./fsUtils";
 
 let baseDir: string;
 beforeEach(async () => {
@@ -10,6 +10,17 @@ beforeEach(async () => {
 });
 afterEach(async () => {
   await rmDir(baseDir);
+});
+
+describe("pathResolve", () => {
+  test.each([
+    [".", "/basePath"],
+    ["a", "/basePath/a"],
+    ["a/b", "/basePath/a/b"],
+    ["/a/b", "/a/b"],
+  ])('pathResolve(baseDir, "%s") to be "%s"', (path, expected) => {
+    expect(pathResolve("/basePath", path)).toEqual(expected);
+  });
 });
 
 describe("makeDir", () => {
