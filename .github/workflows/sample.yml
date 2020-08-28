@@ -30,16 +30,26 @@ jobs:
       - if: ${{ matrix.os == 'windows-latest' }}
         name: output on windows
         run: |
-          echo 'MASK_VALUE1'
-          echo $env:DUMMY1_TOKEN
-          echo $env:DUMMY1_NO_SECRET_TOKEN
-          echo $env:DUMMY2_TOKEN
-          ls examples
+          echo '(mask) MASK_VALUE1'
+          echo "(mask) GITHUB_REPOSITORY      : ${env:GITHUB_REPOSITORY}"
+          echo "(mask) DUMMY1_TOKEN           : ${env:DUMMY1_TOKEN}"
+          echo "       DUMMY1_NO_SECRET_TOKEN : ${env:DUMMY1_NO_SECRET_TOKEN}"
+          echo "       DUMMY1_HOME            : ${env:DUMMY1_HOME}"
+          echo "(mask) DUMMY2_TOKEN           : ${env:DUMMY2_TOKEN}"
+          echo "ls -l examples/dest"
+          ls examples/dest
+          echo "ls -l ${env:HOME}/dest"
+          ls ${env:HOME}/dest
       - if: ${{ matrix.os != 'windows-latest' }}
         name: output on ubuntu or macOS
         run: |
-          echo 'MASK_VALUE1'
-          echo $DUMMY1_TOKEN
-          echo $DUMMY1_NO_SECRET_TOKEN
-          echo $DUMMY2_TOKEN
-          ls -al examples
+          echo '(mask) MASK_VALUE1'
+          echo "(mask) GITHUB_REPOSITORY      : ${GITHUB_REPOSITORY}"
+          echo "(mask) DUMMY1_TOKEN           : ${DUMMY1_TOKEN}"
+          echo "       DUMMY1_NO_SECRET_TOKEN : ${DUMMY1_NO_SECRET_TOKEN}"
+          echo "       DUMMY1_HOME            : ${DUMMY1_HOME}"
+          echo "(mask) DUMMY2_TOKEN           : ${DUMMY2_TOKEN}"
+          echo "ls -l examples/dest"
+          ls examples/dest
+          echo "ls -l ${HOME}/dest"
+          ls ${HOME}/dest

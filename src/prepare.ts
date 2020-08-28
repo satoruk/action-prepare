@@ -1,5 +1,6 @@
 import { error, exportVariable, info, setSecret } from "@actions/core";
 import isString from "lodash/isString";
+import { replaceEnvVer } from "./strUtils";
 
 import { Config } from "./config";
 import { writeFile } from "./fsUtils";
@@ -9,8 +10,9 @@ export async function prepareMask(config: Config): Promise<void> {
     return;
   }
   for (const v of config.mask) {
-    setSecret(v);
+    setSecret(replaceEnvVer(v));
   }
+  info(`mask value count: ${config.mask.length}`);
 }
 
 export async function prepareEnv(config: Config): Promise<void> {
@@ -20,13 +22,19 @@ export async function prepareEnv(config: Config): Promise<void> {
   for (const k in config.env) {
     const env = config.env[k];
     if (isString(env)) {
-      setSecret(env);
-      exportVariable(k, env);
+      const value = replaceEnvVer(env);
+      setSecret(value);
+      exportVariable(k, value);
+      info(`${k}: *** (mask)`);
     } else {
-      if (env.secret !== false) {
-        setSecret(env.value);
+      const value = replaceEnvVer(env.value);
+      exportVariable(k, value);
+      if (env.secret === false) {
+        info(`${k}: ${value}`);
+      } else {
+        setSecret(value);
+        info(`${k}: *** (mask)`);
       }
-      exportVariable(k, env.value);
     }
   }
 }
@@ -40,7 +48,8 @@ export async function prepareFile(
   }
   for (const filename in config.file) {
     const content = config.file[filename];
-    const result = await writeFile(baseDir, filename, content);
+    const actualFilename = replaceEnvVer(filename);
+    const result = await writeFile(baseDir, actualFilename, content);
     if (result) {
       info(`wrote "${filename}"`);
     } else {

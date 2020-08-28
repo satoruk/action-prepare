@@ -1,13 +1,13 @@
 import * as openpgp from "openpgp";
 import Ajv from "ajv";
 import yaml from "js-yaml";
-import { join } from "path";
 import { promises } from "fs";
 import groupBy from "lodash/groupBy";
 import sortBy from "lodash/sortBy";
 
-import { Inputs } from "./inputs";
 import configSchema from "./config.schema.json";
+import { Inputs } from "./inputs";
+import { pathResolve } from "./fsUtils";
 
 export type Config = {
   mask?: string[];
@@ -68,7 +68,7 @@ export async function loadConfigFile(
   path: string
 ): Promise<Config> {
   const { readFile } = promises;
-  const absolutePath = join(baseDir, path);
+  const absolutePath = pathResolve(baseDir, path);
   const raw = await readFile(absolutePath, "utf8");
   return loadConfigYaml(raw);
 }
@@ -79,7 +79,7 @@ export async function loadConfigWithGPGPassphrase(
   gpgPassphrase: string
 ): Promise<Config> {
   const { readFile } = promises;
-  const absolutePath = join(baseDir, path);
+  const absolutePath = pathResolve(baseDir, path);
   const content = await readFile(absolutePath);
   const { data: raw } = await openpgp.decrypt({
     message: await openpgp.message.read(content),

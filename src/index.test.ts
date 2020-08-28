@@ -1,3 +1,5 @@
+import * as core from "@actions/core";
+
 import * as pkg from "./index";
 import * as config from "./config";
 import * as prepare from "./prepare";
@@ -5,6 +7,8 @@ import * as inputs from "./inputs";
 
 beforeEach(() => {
   jest.clearAllMocks();
+  jest.spyOn(core, "startGroup").mockReturnValue();
+  jest.spyOn(core, "endGroup").mockReturnValue();
 });
 
 it("import keys", () => {
