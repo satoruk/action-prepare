@@ -80,5 +80,5 @@ steps:
   - uses: satoruk/action-prepare
     with:
       config_file: examples/demo.yml.gpg
-      gpg_passphrase: secret stuff
+      gpg_passphrase: ${{ secrets.YOUR_PASSPHRASE }}
 ```
