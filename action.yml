@@ -1,4 +1,4 @@
-name: "Prepare"
+name: "action preparation"
 description: "Prepare any environment variables or files"
 inputs:
   config_file:
