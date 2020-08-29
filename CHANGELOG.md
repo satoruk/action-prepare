@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/satoruk/action-prepare/compare/v1.4.0...v1.4.1) (2020-08-29)
+
+
+### Bug Fixes
+
+* rename to `action preparation` ([429ea93](https://github.com/satoruk/action-prepare/commit/429ea930ff29c33d3983dba05c570a47f361ad5c))
+
 # [1.4.0](https://github.com/satoruk/action-prepare/compare/v1.3.0...v1.4.0) (2020-08-28)
 
 
