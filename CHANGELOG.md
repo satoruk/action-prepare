@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/satoruk/action-prepare/compare/v1.4.1...v1.5.0) (2020-09-03)
+
+
+### Features
+
+* improve error handling ([fd6cdeb](https://github.com/satoruk/action-prepare/commit/fd6cdeb51a4fc951aabacfe9f86973ef02670789))
+
 ## [1.4.1](https://github.com/satoruk/action-prepare/compare/v1.4.0...v1.4.1) (2020-08-29)
 
 
