@@ -35,10 +35,12 @@ describe("loadInputs", () => {
     [
       "unsatisfied config file path",
       {}, //
-      new Error("Input required and not supplied: config_file"),
+      "Input required and not supplied: config_file",
     ],
   ])("loadInputs() with %s", async (_, params, expected) => {
     actionWith(params);
-    return expect(loadInputs()).rejects.toThrowError(expected);
+    const actual = loadInputs();
+    await expect(actual).rejects.toThrow(Error);
+    await expect(actual).rejects.toThrow(expected);
   });
 });
