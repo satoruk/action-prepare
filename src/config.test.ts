@@ -1,4 +1,5 @@
 import { assertConfig, loadConfig } from "./config";
+import { ConfigActionError } from "./errors";
 
 describe("assertConfig", () => {
   test.each([
@@ -32,7 +33,7 @@ describe("assertConfig", () => {
   ])("assertConfig(%s) to be success", (_, data, expected) => {
     expect(() => {
       assertConfig(data);
-    }).not.toThrowError();
+    }).not.toThrow();
     expect(data).toStrictEqual(expected);
   });
 
@@ -53,9 +54,11 @@ describe("assertConfig", () => {
       "should NOT have additional properties at .env",
     ],
   ])("assertConfig(%s) to throw error", async (_, data, expected) => {
-    expect(() => {
+    const actual = () => {
       assertConfig(data);
-    }).toThrowError(new TypeError(expected));
+    };
+    expect(actual).toThrow(ConfigActionError);
+    expect(actual).toThrow(expected);
   });
 });
 

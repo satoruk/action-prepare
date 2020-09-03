@@ -56,9 +56,9 @@ describe("makeDir", () => {
       await writeFile(join(baseDir, path), "dummy");
     });
     test(`makeDir(baseDir, "${path}") to throw error`, async () => {
-      await expect(makeDir(baseDir, path)).rejects.toThrowError(
-        new Error(`not a directory: ${path}`)
-      );
+      const actual = makeDir(baseDir, path);
+      await expect(actual).rejects.toThrow(Error);
+      await expect(actual).rejects.toThrow(`not a directory: ${path}`);
     });
   });
 });
@@ -88,9 +88,10 @@ describe("writeFile", () => {
     });
     test(`writeFile(baseDir, "${path}", "dummy") to throw error`, async () => {
       const content = "dummy";
-      await expect(writeFile(baseDir, path, content)).rejects.toThrowError(
-        /EISDIR/ // Error is dir
-      );
+      const actual = writeFile(baseDir, path, content);
+
+      // Error is dir
+      await expect(actual).rejects.toThrow(/EISDIR/);
     });
   });
 

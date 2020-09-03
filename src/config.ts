@@ -6,6 +6,7 @@ import groupBy from "lodash/groupBy";
 import sortBy from "lodash/sortBy";
 
 import configSchema from "./config.schema.json";
+import { ConfigActionError } from "./errors";
 import { Inputs } from "./inputs";
 import { pathResolve } from "./fsUtils";
 
@@ -42,7 +43,7 @@ export function assertConfig(v: unknown): asserts v is Config {
         (v) => -ERROR_KEYWORD_ORDER.indexOf(v.keyword)
       );
       for (const e of sortedErrors) {
-        throw new TypeError(`${e.message} at ${e.dataPath}`);
+        throw new ConfigActionError(`${e.message} at ${e.dataPath}`);
       }
     }
   }

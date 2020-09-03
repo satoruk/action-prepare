@@ -7,8 +7,8 @@ import * as inputs from "./inputs";
 
 beforeEach(() => {
   jest.clearAllMocks();
-  jest.spyOn(core, "startGroup").mockReturnValue();
   jest.spyOn(core, "endGroup").mockReturnValue();
+  jest.spyOn(core, "startGroup").mockReturnValue();
 });
 
 it("import keys", () => {
@@ -16,7 +16,7 @@ it("import keys", () => {
 });
 
 describe("run", () => {
-  test("foo", async () => {
+  test("to success", async () => {
     const baseDir = "path/to/dummy";
     const valueInputs = {
       configFile: "config.yml",
@@ -50,5 +50,39 @@ describe("run", () => {
 
     expect(spyPrepareFile).toBeCalledTimes(1);
     expect(spyPrepareFile).toHaveBeenCalledWith(baseDir, valueConfig);
+  });
+
+  test("to fail", async () => {
+    const baseDir = "path/to/dummy";
+    const valueInputs = {
+      configFile: "config.yml",
+    };
+    const valueConfig = {
+      env: {},
+      files: {},
+    };
+    const error = new Error("dummy");
+    const spyLoadInputs = jest
+      .spyOn(inputs, "loadInputs")
+      .mockReturnValue(Promise.reject(error));
+    const spyLoadConfig = jest
+      .spyOn(config, "loadConfig")
+      .mockReturnValue(Promise.resolve(valueConfig));
+    const spyPrepareEnv = jest
+      .spyOn(prepare, "prepareEnv")
+      .mockReturnValue(Promise.resolve());
+    const spyPrepareFile = jest
+      .spyOn(prepare, "prepareFile")
+      .mockReturnValue(Promise.resolve());
+    const spySetFailed = jest.spyOn(core, "setFailed").mockReturnValue();
+
+    await pkg.run(baseDir);
+
+    expect(spyLoadInputs).toBeCalledTimes(1);
+    expect(spyLoadConfig).toBeCalledTimes(0);
+    expect(spyPrepareEnv).toBeCalledTimes(0);
+    expect(spyPrepareFile).toBeCalledTimes(0);
+    expect(spySetFailed).toBeCalledTimes(1);
+    expect(spySetFailed).toHaveBeenCalledWith(error);
   });
 });
