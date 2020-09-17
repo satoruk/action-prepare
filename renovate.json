@@ -1,13 +1,20 @@
 {
   "extends": ["config:base", "packages:eslint", "group:definitelyTyped"],
+  "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 3am on the first day of the month"]
+  },
   "packageRules": [
     {
-      "extends": "packages:jsUnitTest",
-      "groupName": "Test packages",
-      "packageNames": ["@types/jest", "ts-jest"]
+      "automerge": true,
+      "groupName": "Test deps",
+      "groupSlug": "test-deps",
+      "packageNames": ["@types/jest", "jest", "ts-jest"]
     },
     {
-      "groupName": "semantic-release packages",
+      "groupName": "Semantic Release deps",
+      "groupSlug": "semantic-release-deps",
       "packageNames": [
         "commitizen",
         "cz-conventional-changelog",
@@ -16,5 +23,9 @@
       "packagePatterns": ["^@semantic-release/"]
     }
   ],
-  "schedule": ["every weekend"]
+  "schedule": ["at 5:00 pm on Fri", "at 5:00 pm on Tues", "every weekend"],
+  "timezone": "Asia/Tokyo",
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  }
 }
