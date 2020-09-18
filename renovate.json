@@ -6,6 +6,20 @@
   },
   "packageRules": [
     {
+      "enabled": false,
+      "groupName": "Manual managed deps",
+      "groupSlug": "manual-managed-deps",
+      "packageNames": [
+        "@types/openpgp",
+        "asn1.js",
+        "bn.js",
+        "inherits",
+        "minimalistic-assert",
+        "openpgp",
+        "safer-buffer"
+      ]
+    },
+    {
       "groupName": "Test deps",
       "groupSlug": "test-deps",
       "packageNames": ["@types/jest", "jest", "ts-jest"]
