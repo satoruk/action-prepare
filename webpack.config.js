@@ -1,6 +1,8 @@
 const path = require("path");
 
 module.exports = {
+  // devtool: "inline-source-map",
+  devtool: "source-map",
   entry: {
     index: ["./src/index.ts"],
     index2: ["./src/index2.ts"],
@@ -23,6 +25,7 @@ module.exports = {
   },
   output: {
     filename: "[name].js",
+    // format: "cjs",
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
