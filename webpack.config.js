@@ -4,10 +4,11 @@ module.exports = {
   // devtool: "inline-source-map",
   devtool: "source-map",
   entry: {
-    index: ["./src/index.ts"],
+    index: "./src/index.ts",
     index2: ["./src/index2.ts"],
   },
-  mode: "development",
+  mode: "production",
+  // mode: "development",
   module: {
     rules: [
       {
