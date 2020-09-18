@@ -1,3 +1,4 @@
+import "source-map-support/register";
 import { endGroup, startGroup, setFailed } from "@actions/core";
 
 import { ConfigActionError } from "./errors";
@@ -26,6 +27,11 @@ export async function run(baseDir: string): Promise<void> {
 
 /* istanbul ignore next */
 if (require.main === module) {
+  console.log("main");
+  const baseDir = process.cwd();
+  run(baseDir);
+} else {
+  console.log("not main");
   const baseDir = process.cwd();
   run(baseDir);
 }
