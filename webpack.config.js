@@ -1,4 +1,5 @@
 const path = require("path");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
   // devtool: "inline-source-map",
@@ -7,6 +8,7 @@ module.exports = {
     index: "./src/index.ts",
     index2: ["./src/index2.ts"],
   },
+  externals: [nodeExternals()],
   mode: "production",
   // mode: "development",
   module: {
