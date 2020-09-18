@@ -8,7 +8,18 @@ module.exports = {
     index: "./src/index.ts",
     index2: ["./src/index2.ts"],
   },
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      allowlist: [
+        "ajv",
+        "js-yaml",
+        "openpgp",
+        "source-map-support/register",
+        /^@actions\//,
+        /^lodash/,
+      ],
+    }),
+  ],
   mode: "production",
   // mode: "development",
   module: {
