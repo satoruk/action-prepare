@@ -1,6 +1,19 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 
+const externals = [
+  nodeExternals({
+    allowlist: [
+      "ajv",
+      "js-yaml",
+      "openpgp",
+      "source-map-support/register",
+      /^@actions\//,
+      /^lodash/,
+    ],
+  }),
+];
+
 module.exports = {
   // devtool: "inline-source-map",
   devtool: "source-map",
@@ -8,18 +21,7 @@ module.exports = {
     index: "./src/index.ts",
     index2: ["./src/index2.ts"],
   },
-  externals: [
-    nodeExternals({
-      allowlist: [
-        "ajv",
-        "js-yaml",
-        "openpgp",
-        "source-map-support/register",
-        /^@actions\//,
-        /^lodash/,
-      ],
-    }),
-  ],
+  externals: ["stream"],
   mode: "production",
   // mode: "development",
   module: {
