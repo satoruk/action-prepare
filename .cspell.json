@@ -14,9 +14,12 @@
     "codecov",
     "gopath",
     "macos",
+    "minimalistic",
     "mkdir",
     "openpgp",
+    "openpgpjs",
     "satoruk",
-    "vercel"
+    "vercel",
+    "vordimous"
   ]
 }
