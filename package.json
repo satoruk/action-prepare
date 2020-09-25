@@ -12,19 +12,21 @@
     "clean:report": "del coverage '*.log'",
     "commit": "git-cz",
     "copy": "cpx -C \"node_modules/{asn1.js,bn.js,inherits,safer-buffer,minimalistic-assert}/**/*\" dist/node_modules",
+    "format": "eslint --fix . && prettier --write .",
     "lint": "yarn lint:es && yarn lint:spell '**/*.*'",
     "lint:es": "tsc --noEmit && eslint",
     "lint:spell": "cspell",
-    "format": "eslint --fix . && prettier --write .",
     "prepack": "yarn prepare",
     "prepare": "yarn clean && yarn build",
     "release": "semantic-release",
     "test": "jest",
-    "test:inspect": "npx --node-arg --inspect-brk jest --runInBand --coverage=false"
+    "test:inspect": "npx --node-arg --inspect-brk jest --runInBand --coverage=false",
+    "update:readme": "f(){ replace-in-file \"/(?<=satoruk/action-prepare@v)\\d+(\\.\\d+){2}/g\" $1 README.md --isRegex; }; f"
   },
   "devDependencies": {
     "@actions/core": "1.2.4",
     "@semantic-release/changelog": "5.0.1",
+    "@semantic-release/exec": "5.0.0",
     "@semantic-release/git": "9.0.0",
     "@types/jest": "26.0.10",
     "@types/js-yaml": "3.12.5",
@@ -53,6 +55,7 @@
     "lodash": "4.17.20",
     "openpgp": "4.10.7",
     "prettier": "2.1.2",
+    "replace-in-file": "6.1.0",
     "rimraf": "3.0.2",
     "semantic-release": "17.1.1",
     "ts-jest": "26.2.0",
@@ -69,6 +72,12 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "yarn update:readme ${nextRelease.version}"
+        }
+      ],
       "@semantic-release/github",
       "@semantic-release/npm",
       [
@@ -76,6 +85,7 @@
         {
           "assets": [
             "CHANGELOG.md",
+            "README.md",
             "dist/**",
             "package.json"
           ]
