@@ -6,6 +6,11 @@ on:
       - ".github/**"
       - "dist/**"
       - "examples/**"
+  pull_request:
+    paths:
+      - ".github/**"
+      - "dist/**"
+      - "examples/**"
 
 jobs:
   sample:
@@ -40,6 +45,12 @@ jobs:
           ls examples/dest
           echo "ls -l ${env:HOME}/dest"
           ls ${env:HOME}/dest
+          If ( "${env:DUMMY1_TOKEN}" -eq "DUMMY1_TOKEN_VALUE" ) {
+            echo "assert ENV ... OK"
+          } Else {
+            echo "assert ENV ... NG"
+            exit 1
+          }
       - if: ${{ matrix.os != 'windows-latest' }}
         name: output on ubuntu or macOS
         run: |
@@ -53,3 +64,9 @@ jobs:
           ls examples/dest
           echo "ls -l ${HOME}/dest"
           ls ${HOME}/dest
+          if [ "${DUMMY1_TOKEN}" = "DUMMY1_TOKEN_VALUE" ]; then
+            echo "assert ENV ... OK"
+          else
+            echo "assert ENV ... NG"
+            exit 1
+          fi

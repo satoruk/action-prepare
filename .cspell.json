@@ -13,10 +13,14 @@
     "automerge",
     "codecov",
     "gopath",
+    "lgpl",
     "macos",
+    "minimalistic",
     "mkdir",
     "openpgp",
+    "openpgpjs",
     "satoruk",
-    "vercel"
+    "vercel",
+    "vordimous"
   ]
 }
