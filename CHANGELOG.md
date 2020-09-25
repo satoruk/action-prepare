@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/satoruk/action-prepare/compare/v1.5.0...v2.0.0) (2020-09-25)
+
+
+### Bug Fixes
+
+* **license:** change to LGPL v3 ([bf6bfc0](https://github.com/satoruk/action-prepare/commit/bf6bfc0dd3c625c02d52153e6d6cbb0dbb141ecd)), closes [#11](https://github.com/satoruk/action-prepare/issues/11)
+* workaround issue [#8](https://github.com/satoruk/action-prepare/issues/8) ([7a22f81](https://github.com/satoruk/action-prepare/commit/7a22f8168db80cee36a736393bc24821f270176b))
+
+
+### BREAKING CHANGES
+
+* **license:** Change the license to LGPL v3 from MIT
+
 # [1.5.0](https://github.com/satoruk/action-prepare/compare/v1.4.1...v1.5.0) (2020-09-03)
 
 
