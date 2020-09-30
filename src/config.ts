@@ -1,9 +1,9 @@
-import * as openpgp from "openpgp";
 import Ajv from "ajv";
-import yaml from "js-yaml";
-import { promises } from "fs";
 import groupBy from "lodash/groupBy";
 import sortBy from "lodash/sortBy";
+import yaml from "js-yaml";
+import { promises } from "fs";
+import { message, decrypt } from "openpgp";
 
 import configSchema from "./config.schema.json";
 import { ConfigActionError } from "./errors";
@@ -82,8 +82,8 @@ export async function loadConfigWithGPGPassphrase(
   const { readFile } = promises;
   const absolutePath = pathResolve(baseDir, path);
   const content = await readFile(absolutePath);
-  const { data: raw } = await openpgp.decrypt({
-    message: await openpgp.message.read(content),
+  const { data: raw } = await decrypt({
+    message: await message.read(content),
     passwords: [gpgPassphrase],
     format: "utf8",
   });

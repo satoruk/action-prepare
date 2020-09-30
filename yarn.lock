@@ -833,13 +833,6 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/bn.js@*":
-  version "4.11.6"
-  resolved "https://registry.yarnpkg.com/@types/bn.js/-/bn.js-4.11.6.tgz#c306c70d9358aaea33cd4eda092a742b9505967c"
-  integrity sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==
-  dependencies:
-    "@types/node" "*"
-
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -966,13 +959,6 @@
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
-
-"@types/openpgp@4.4.12":
-  version "4.4.12"
-  resolved "https://registry.yarnpkg.com/@types/openpgp/-/openpgp-4.4.12.tgz#9fe26303d7938d49acf05e8f3b8c1a96c456bfe2"
-  integrity sha512-8vd0LQO4OQw3WueDSYAZcxlItyDWi7NCeXoxvCIePRRZnX4U9odDLY5rK7hHnXgnEatQgVYjtWoC5tE7rHBEqA==
-  dependencies:
-    "@types/bn.js" "*"
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -6450,9 +6436,9 @@ opener@^1.5.1:
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.1.tgz#6d2f0e77f1a0af0032aca716c2c1fbb8e7e8abed"
   integrity sha512-goYSy5c2UXE4Ra1xixabeVh1guIX/ZV/YokJksb6q2lubWu6UbvPQ20p542/sFIll1nl8JnCyK9oBaOcCWXwvA==
 
-openpgp@vordimous/openpgpjs#058265f:
+"openpgp@github:openpgpjs/openpgpjs#74f16f080c9b5a3c9b0a51ffdd869a7d07a797fe":
   version "4.10.8"
-  resolved "https://codeload.github.com/vordimous/openpgpjs/tar.gz/058265f3748b37b6e830e7e675cb28c8202aeded"
+  resolved "https://codeload.github.com/openpgpjs/openpgpjs/tar.gz/74f16f080c9b5a3c9b0a51ffdd869a7d07a797fe"
   dependencies:
     asn1.js "^5.0.0"
     node-fetch "^2.1.2"
