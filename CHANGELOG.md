@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/satoruk/action-prepare/compare/v2.0.0...v2.0.1) (2020-12-03)
+
+
+### Bug Fixes
+
+* change default branch to `main` ([e2ecd69](https://github.com/satoruk/action-prepare/commit/e2ecd69e97d6806da65a3a8526dc7640b07b18e3))
+
 # [2.0.0](https://github.com/satoruk/action-prepare/compare/v1.5.0...v2.0.0) (2020-09-25)
 
 
