@@ -1,9 +1,9 @@
-<h1 align="center">prepare action for GitHub</h2>
+<h1 align="center">prepare action for GitHub</h1>
 
 <p align="center">
   <a href="https://github.com/satoruk/action-prepare/actions?query=workflow%3ATest"><img src="https://github.com/satoruk/action-prepare/workflows/Test/badge.svg" height="20"/></a>
-  <a href="https://codecov.io/gh/satoruk/action-prepare"><img src="https://codecov.io/gh/satoruk/action-prepare/branch/master/graph/badge.svg" height="20"/></a>
-<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fsatoruk%2Faction-prepare?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsatoruk%2Faction-prepare.svg?type=shield"/></a>
+  <a href="https://codecov.io/gh/satoruk/action-prepare"><img src="https://codecov.io/gh/satoruk/action-prepare/branch/main/graph/badge.svg" height="20"/></a>
+  <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fsatoruk%2Faction-prepare?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsatoruk%2Faction-prepare.svg?type=shield" height="20"/></a>
 </p>
 
 ## Usage
@@ -19,7 +19,7 @@ name: Sample
 on: push
 steps:
   - uses: actions/checkout@v2
-  - uses: satoruk/action-prepare@v2.0.0
+  - uses: satoruk/action-prepare@v2.0.1
     with:
       config_file: examples/demo.yml
 ```
@@ -78,7 +78,7 @@ name: Sample
 on: push
 steps:
   - uses: actions/checkout@v2
-  - uses: satoruk/action-prepare@v2.0.0
+  - uses: satoruk/action-prepare@v2.0.1
     with:
       config_file: examples/demo.yml.gpg
       gpg_passphrase: ${{ secrets.YOUR_PASSPHRASE }}

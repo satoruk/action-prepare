@@ -1,5 +1,11 @@
 {
-  "version": "0.1",
+  "enabledLanguageIds": [
+    "javascript",
+    "markdown",
+    "plaintext",
+    "typescript",
+    "yml"
+  ],
   "ignorePaths": [
     "CHANGELOG.md",
     "coverage/**",
@@ -8,6 +14,7 @@
     "node_modules/**",
     "yarn.lock"
   ],
+  "version": "0.1",
   "words": [
     "algo",
     "automerge",
