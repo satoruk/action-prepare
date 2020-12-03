@@ -54,7 +54,7 @@
     "js-yaml": "3.14.0",
     "lodash": "4.17.20",
     "openpgp": "4.10.7",
-    "prettier": "2.1.2",
+    "prettier": "2.2.1",
     "replace-in-file": "6.1.0",
     "rimraf": "3.0.2",
     "semantic-release": "17.1.1",
