@@ -84,6 +84,6 @@ steps:
       gpg_passphrase: ${{ secrets.YOUR_PASSPHRASE }}
 ```
 
-
 ## License
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsatoruk%2Faction-prepare.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsatoruk%2Faction-prepare?ref=badge_large)

@@ -23,8 +23,18 @@
     "test:inspect": "npx --node-arg --inspect-brk jest --runInBand --coverage=false",
     "update:readme": "f(){ replace-in-file \"/(?<=satoruk/action-prepare@v)\\d+(\\.\\d+){2}/g\" $1 README.md --isRegex; }; f"
   },
-  "devDependencies": {
+  "dependencies": {
     "@actions/core": "1.2.6",
+    "@typescript-eslint/eslint-plugin": "4.9.0",
+    "@typescript-eslint/parser": "4.9.0",
+    "@vercel/ncc": "0.25.1",
+    "ajv": "6.12.6",
+    "js-yaml": "3.14.0",
+    "lodash": "4.17.20",
+    "openpgp": "4.10.8",
+    "typescript": "4.1.2"
+  },
+  "devDependencies": {
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/exec": "5.0.0",
     "@semantic-release/git": "9.0.0",
@@ -34,10 +44,6 @@
     "@types/node": "14.14.10",
     "@types/openpgp": "4.4.14",
     "@types/rimraf": "3.0.0",
-    "@typescript-eslint/eslint-plugin": "4.9.0",
-    "@typescript-eslint/parser": "4.9.0",
-    "@vercel/ncc": "0.25.1",
-    "ajv": "6.12.6",
     "commitizen": "4.2.2",
     "cpx": "1.5.0",
     "cspell": "4.2.5",
@@ -51,16 +57,12 @@
     "eslint-plugin-prettier": "3.2.0",
     "eslint-plugin-promise": "4.2.1",
     "jest": "26.6.3",
-    "js-yaml": "3.14.0",
-    "lodash": "4.17.20",
-    "openpgp": "4.10.8",
     "prettier": "2.2.1",
     "replace-in-file": "6.1.0",
     "rimraf": "3.0.2",
     "semantic-release": "17.3.0",
     "ts-jest": "26.4.4",
-    "ts-node": "9.0.0",
-    "typescript": "4.1.2"
+    "ts-node": "9.0.0"
   },
   "config": {
     "commitizen": {
@@ -69,7 +71,71 @@
   },
   "release": {
     "plugins": [
-      "@semantic-release/commit-analyzer",
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "releaseRules": [
+            {
+              "tag": "feat",
+              "release": "minor"
+            },
+            {
+              "tag": "fix",
+              "release": "minor"
+            },
+            {
+              "tag": "docs",
+              "release": false
+            },
+            {
+              "tag": "style",
+              "release": "patch"
+            },
+            {
+              "tag": "refactor",
+              "release": "patch"
+            },
+            {
+              "tag": "perf",
+              "release": "patch"
+            },
+            {
+              "tag": "test",
+              "release": false
+            },
+            {
+              "tag": "build",
+              "release": "patch"
+            },
+            {
+              "tag": "ci",
+              "release": false
+            },
+            {
+              "tag": "chore",
+              "scope": "deps",
+              "release": "patch"
+            },
+            {
+              "tag": "chore",
+              "scope": "deps-dev",
+              "release": false
+            },
+            {
+              "tag": "chore",
+              "release": false
+            },
+            {
+              "tag": "chore",
+              "release": false
+            },
+            {
+              "tag": "perf",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       [
