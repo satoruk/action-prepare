@@ -8,6 +8,9 @@ on:
     paths-ignore:
       - "examples/**"
   pull_request:
+    branches-ignore:
+      - main
+      - next
     paths-ignore:
       - "examples/**"
 

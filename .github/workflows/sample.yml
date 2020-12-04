@@ -2,11 +2,17 @@ name: Sample
 
 on:
   push:
+    branches:
+      - main
+      - next
     paths:
       - ".github/**"
       - "dist/**"
       - "examples/**"
   pull_request:
+    branches-ignore:
+      - main
+      - next
     paths:
       - ".github/**"
       - "dist/**"
