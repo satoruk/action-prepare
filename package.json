@@ -75,7 +75,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "yarn update:readme ${nextRelease.version}"
+          "prepareCmd": "yarn build && yarn update:readme ${nextRelease.version}"
         }
       ],
       "@semantic-release/github",
