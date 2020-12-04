@@ -6,7 +6,6 @@ import { loadInputs } from "./inputs";
 import { prepareEnv, prepareFile, prepareMask } from "./prepare";
 
 export async function run(baseDir: string): Promise<void> {
-  warning("Change default branch to `main` https://github.com/satoruk/action-prepare/issues/30")
   try {
     const inputs = await loadInputs();
     const config = await loadConfig(baseDir, inputs);
