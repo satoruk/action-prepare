@@ -1,6 +1,5 @@
-import { endGroup, startGroup, setFailed, warning } from "@actions/core";
+import { endGroup, startGroup, setFailed } from "@actions/core";
 
-import { ConfigActionError } from "./errors";
 import { loadConfig } from "./config";
 import { loadInputs } from "./inputs";
 import { prepareEnv, prepareFile, prepareMask } from "./prepare";
