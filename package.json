@@ -45,6 +45,7 @@
     "@types/openpgp": "4.4.14",
     "@types/rimraf": "3.0.0",
     "commitizen": "4.2.2",
+    "conventional-changelog-conventionalcommits": "4.5.0",
     "cpx": "1.5.0",
     "cspell": "4.2.5",
     "cz-conventional-changelog": "3.3.0",
@@ -70,73 +71,137 @@
     }
   },
   "release": {
+    "branches": [
+      "main"
+    ],
     "plugins": [
       [
         "@semantic-release/commit-analyzer",
         {
           "releaseRules": [
             {
-              "tag": "feat",
+              "type": "feat",
               "release": "minor"
             },
             {
-              "tag": "fix",
-              "release": "minor"
+              "type": "fix",
+              "release": "patch"
             },
             {
-              "tag": "docs",
+              "type": "docs",
               "release": false
             },
             {
-              "tag": "style",
+              "type": "style",
               "release": "patch"
             },
             {
-              "tag": "refactor",
+              "type": "refactor",
               "release": "patch"
             },
             {
-              "tag": "perf",
+              "type": "perf",
               "release": "patch"
             },
             {
-              "tag": "test",
+              "type": "test",
               "release": false
             },
             {
-              "tag": "build",
-              "release": "patch"
-            },
-            {
-              "tag": "ci",
+              "type": "build",
               "release": false
             },
             {
-              "tag": "chore",
+              "type": "ci",
+              "release": false
+            },
+            {
+              "type": "chore",
               "scope": "deps",
               "release": "patch"
             },
             {
-              "tag": "chore",
+              "type": "chore",
               "scope": "deps-dev",
               "release": false
             },
             {
-              "tag": "chore",
+              "type": "chore",
               "release": false
             },
             {
-              "tag": "chore",
-              "release": false
+              "type": "perf",
+              "release": "patch"
             },
             {
-              "tag": "perf",
+              "type": "revert",
               "release": "patch"
             }
           ]
         }
       ],
-      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "feat",
+                "section": ":sparkles: Features"
+              },
+              {
+                "type": "fix",
+                "section": ":bug: Fixes"
+              },
+              {
+                "type": "docs",
+                "hidden": false
+              },
+              {
+                "type": "style"
+              },
+              {
+                "type": "refactor"
+              },
+              {
+                "type": "perf"
+              },
+              {
+                "type": "test",
+                "hidden": false
+              },
+              {
+                "type": "build",
+                "hidden": false
+              },
+              {
+                "type": "ci",
+                "hidden": false
+              },
+              {
+                "type": "chore",
+                "scope": "deps"
+              },
+              {
+                "type": "chore",
+                "scope": "deps-dev",
+                "hidden": false
+              },
+              {
+                "type": "chore",
+                "hidden": false
+              },
+              {
+                "type": "perf"
+              },
+              {
+                "type": "revert"
+              }
+            ]
+          }
+        }
+      ],
       "@semantic-release/changelog",
       [
         "@semantic-release/exec",
