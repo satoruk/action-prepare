@@ -4,14 +4,12 @@ on:
   push:
     branches:
       - main
-      - "!next"
+      - "next"
     paths:
       - ".github/**"
       - "dist/**"
       - "examples/**"
   pull_request:
-    branches:
-      - "next"
     paths:
       - ".github/**"
       - "dist/**"
