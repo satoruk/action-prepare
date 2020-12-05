@@ -2,23 +2,10 @@ name: Sample
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - ".github/**"
-      - "dist/**"
-      - "examples/**"
-  pull_request:
-    branches-ignore:
-      - main
-    paths:
-      - ".github/**"
-      - "dist/**"
-      - "examples/**"
 
 jobs:
   sample:
-    name: Sample step
+    name: Sample
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
