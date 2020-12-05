@@ -72,7 +72,7 @@
   },
   "release": {
     "branches": [
-      "main"
+      "next"
     ],
     "plugins": [
       [
