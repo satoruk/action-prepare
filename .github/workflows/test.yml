@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "!examples/**"
+    paths-ignore:
+      - "examples/**"
   pull_request:
-    paths:
-      - "!examples/**"
+    paths-ignore:
+      - "examples/**"
 
 jobs:
   test:
