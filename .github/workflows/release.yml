@@ -5,7 +5,7 @@ on:
     branches:
       - next
     workflows:
-      - Build
+      - Lint
     types:
       - completed
 
