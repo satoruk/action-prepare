@@ -11,6 +11,7 @@ on:
     #   - "examples/**"
   pull_request:
     branches:
+      - "!next"
     # paths:
     #   - ".github/**"
     #   - "dist/**"
