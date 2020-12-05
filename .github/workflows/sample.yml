@@ -9,8 +9,8 @@ on:
       - "dist/**"
       - "examples/**"
   pull_request:
-    branches-ignore:
-      - main
+    branches:
+      - !main
     paths:
       - ".github/**"
       - "dist/**"
