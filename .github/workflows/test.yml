@@ -5,11 +5,11 @@ on:
     branches:
       - main
       - next
-    paths-ignore:
-      - "examples/**"
+    paths:
+      - "!examples/**"
   pull_request:
-    paths-ignore:
-      - "examples/**"
+    paths:
+      - "!examples/**"
 
 jobs:
   test:
