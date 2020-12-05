@@ -1,18 +1,16 @@
 name: Sample
 
 on:
-  pull_request:
+  push:
     branches:
-      - "next"
-      - "!main"
+      - main
     paths:
       - ".github/**"
       - "dist/**"
       - "examples/**"
-  push:
+  pull_request:
     branches:
-      - main
-      - "!next"
+      - "next"
     paths:
       - ".github/**"
       - "dist/**"
