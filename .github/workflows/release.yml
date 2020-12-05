@@ -35,7 +35,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: install
         # run: yarn install
-        run: echo Dummy install
+        run: echo Dummy install1
       - name: release
         run: echo Dummy release
         # run: yarn release --ci
