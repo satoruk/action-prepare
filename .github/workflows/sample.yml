@@ -2,24 +2,27 @@ name: Sample
 
 on:
   push:
-    branches:
-      - main
-    # paths:
-    #   - ".github/**"
-    #   - "dist/**"
-    #   - "examples/**"
+    paths:
+      - ".github/**"
+      - "dist/**"
+      - "examples/**"
   pull_request:
-    branches:
-      - "!main"
-      - "next"
-    # paths:
-    #   - ".github/**"
-    #   - "dist/**"
-    #   - "examples/**"
+    paths:
+      - ".github/**"
+      - "dist/**"
+      - "examples/**"
 
 jobs:
+  prejob:
+    name: prejob
+    runs-on: ubuntu-latest
+    # if push event on main branch # or pull request event on not main branch
+    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.ref != 'refs/heads/main') }}
+
   sample:
     name: Sample step
+    needs:
+      - prejob
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
