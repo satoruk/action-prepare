@@ -4,18 +4,18 @@ on:
   push:
     branches:
       - main
-    paths:
-      - ".github/**"
-      - "dist/**"
-      - "examples/**"
+    # paths:
+    #   - ".github/**"
+    #   - "dist/**"
+    #   - "examples/**"
   pull_request:
     branches:
       - "next"
       - "!main"
-    paths:
-      - ".github/**"
-      - "dist/**"
-      - "examples/**"
+    # paths:
+    #   - ".github/**"
+    #   - "dist/**"
+    #   - "examples/**"
 
 jobs:
   sample:
