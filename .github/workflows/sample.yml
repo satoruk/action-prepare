@@ -10,6 +10,7 @@ on:
       - "dist/**"
       - "examples/**"
   pull_request:
+    branches:
     paths:
       - ".github/**"
       - "dist/**"
