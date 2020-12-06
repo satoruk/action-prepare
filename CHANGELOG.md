@@ -1,3 +1,20 @@
+### [2.0.2](https://github.com/satoruk/action-prepare/compare/v2.0.1...v2.0.2) (2020-12-06)
+
+
+### :bug: Fixes
+
+* remove warning message ([29bb4e0](https://github.com/satoruk/action-prepare/commit/29bb4e0743711571ef38bec760fae90a499e8504))
+
+
+* ajust CI triggers ([af6bccb](https://github.com/satoruk/action-prepare/commit/af6bccb3f8b6d3901b8d0db7d047d20582be2406))
+* change default branch to `main` ([c5b2807](https://github.com/satoruk/action-prepare/commit/c5b2807ffaa0c8bfa400ff18f55a5ad44c9481af))
+* change release branch ([#39](https://github.com/satoruk/action-prepare/issues/39)) ([1e30cd6](https://github.com/satoruk/action-prepare/commit/1e30cd653d6988517f08ae226882c804bae062b5))
+* fix codecov error ([d9162d8](https://github.com/satoruk/action-prepare/commit/d9162d83733a62de191c7aff450030b7645561e0))
+* improve build sequence ([0201d24](https://github.com/satoruk/action-prepare/commit/0201d24cb759e4324473f21e847614851b0d3cf4))
+* Improve semantic-release settings ([#40](https://github.com/satoruk/action-prepare/issues/40)) ([a6488ce](https://github.com/satoruk/action-prepare/commit/a6488ce9826ef445293fea272176bb0717e925c2))
+* **deps:** bump npm-user-validate from 1.0.0 to 1.0.1 ([9aa4a45](https://github.com/satoruk/action-prepare/commit/9aa4a4551d16b83dd59636611f1a3165d725f1fe))
+* **release:** add auto build ([eb3a604](https://github.com/satoruk/action-prepare/commit/eb3a6046848710c8a9443b60550f87b717d60308))
+
 ## [2.0.1](https://github.com/satoruk/action-prepare/compare/v2.0.0...v2.0.1) (2020-12-03)
 
 
