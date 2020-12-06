@@ -19,7 +19,7 @@ name: Sample
 on: push
 steps:
   - uses: actions/checkout@v2
-  - uses: satoruk/action-prepare@v2.0.1
+  - uses: satoruk/action-prepare@v2.0.2
     with:
       config_file: examples/demo.yml
 ```
@@ -78,7 +78,7 @@ name: Sample
 on: push
 steps:
   - uses: actions/checkout@v2
-  - uses: satoruk/action-prepare@v2.0.1
+  - uses: satoruk/action-prepare@v2.0.2
     with:
       config_file: examples/demo.yml.gpg
       gpg_passphrase: ${{ secrets.YOUR_PASSPHRASE }}
