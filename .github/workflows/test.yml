@@ -2,19 +2,9 @@ name: Test
 
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - "examples/**"
-  pull_request:
-    branches-ignore:
-      - main
-    paths-ignore:
-      - "examples/**"
 
 jobs:
   test:
-    name: Node v${{ matrix.node-version }} on ${{ matrix.os }}
     strategy:
       matrix:
         os:
@@ -51,7 +41,6 @@ jobs:
         if: ${{ matrix.node-version == '12.x' && matrix.os == 'ubuntu-latest' }}
   release:
     needs: test
-    name: release on Node v${{ matrix.node-version }}
     strategy:
       matrix:
         node-version: [12.x]
