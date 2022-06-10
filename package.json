@@ -61,7 +61,7 @@
     "prettier": "2.2.1",
     "replace-in-file": "6.1.0",
     "rimraf": "3.0.2",
-    "semantic-release": "17.3.0",
+    "semantic-release": "19.0.3",
     "ts-jest": "26.4.4",
     "ts-node": "9.0.0"
   },
